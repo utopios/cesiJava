@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class Vente {
     private static int compteur = 0;
+
+    public int getNumero() {
+        return numero;
+    }
+
     private int numero;
     private String etat;
     private ArrayList<Produit> produits;
@@ -22,6 +27,7 @@ public class Vente {
     public boolean valider(Paiement paiement) {
         if(paiement.payer(getTotal())) {
             etat = "validée";
+            updateStock();
             return true;
         }else {
             etat = "erreur paiement";
@@ -29,6 +35,11 @@ public class Vente {
         }
     }
 
+    private void updateStock() {
+        for (Produit produit: produits) {
+           produit.setStock(produit.getStock() - 1);
+        }
+    }
     public BigDecimal getTotal() {
         BigDecimal total = BigDecimal.valueOf(0);
         for (Produit produit: produits) {

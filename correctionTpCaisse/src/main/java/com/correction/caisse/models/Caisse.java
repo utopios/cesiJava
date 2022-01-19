@@ -12,19 +12,33 @@ public class Caisse {
     }
 
     public Vente creerVente() {
-        return null;
+        return new Vente();
     }
 
     public boolean ajouterProduit(Produit produit){
-        return false;
+        return produits.add(produit);
     }
 
     public Produit getProduit(int reference) {
-        return  null;
+        Produit produit = null;
+        for(Produit p : produits) {
+            if(p.getNumero() == reference) {
+                produit = p;
+                break;
+            }
+        }
+        return produit;
     }
 
     public Vente getVente(int reference) {
-        return null;
+        Vente vente = null;
+        for(Vente v : ventes) {
+            if(v.getNumero() == reference) {
+                vente = v;
+                break;
+            }
+        }
+        return  vente;
     }
 
 }
