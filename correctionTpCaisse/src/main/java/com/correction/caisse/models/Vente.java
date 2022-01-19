@@ -16,15 +16,25 @@ public class Vente {
     }
 
     public boolean ajouterProduit(Produit produit) {
-        return  false;
+        return produits.add(produit);
     }
 
     public boolean valider(Paiement paiement) {
-        return false;
+        if(paiement.payer(getTotal())) {
+            etat = "validée";
+            return true;
+        }else {
+            etat = "erreur paiement";
+            return false;
+        }
     }
 
     public BigDecimal getTotal() {
-        return BigDecimal.valueOf(0);
+        BigDecimal total = BigDecimal.valueOf(0);
+        for (Produit produit: produits) {
+            total = total.add(produit.getPrix());
+        }
+        return total;
     }
 
 }
