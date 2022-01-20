@@ -7,6 +7,7 @@ public class IHM {
     private Caisse caisse;
     private Scanner scanner;
     private Vente vente;
+    private String choixMenuVente;
     public  IHM() {
         caisse = new Caisse();
         scanner = new Scanner(System.in);
@@ -46,14 +47,12 @@ public class IHM {
 
     private void actionVente() {
         vente = caisse.creerVente();
-
-        String choix;
         do {
             menuVente();
             System.out.print("Votre choix : ");
-            choix = scanner.next();
+            choixMenuVente = scanner.next();
             System.out.flush();
-            switch (choix) {
+            switch (choixMenuVente) {
                 case "1":
                     actionAjoutProduitVente();
                     break;
@@ -64,19 +63,50 @@ public class IHM {
                     actionPaiementEspece();
                     break;
             }
-        }while (!choix.equals("0"));
+        }while (!choixMenuVente.equals("0"));
 
     }
 
 
     private void actionAjoutProduitVente() {
-
+        System.out.print("Merci de saisir la référence du produit à ajouter : ");
+        int reference = scanner.nextInt();
+        Produit produit = caisse.getProduit(reference);
+        if(produit == null) {
+            System.out.println("***** Aucun produit avec cette référence *****");
+        }
+        else {
+            if(vente.ajouterProduit(produit)) {
+                System.out.println("---- Produit ajouté ----");
+                System.out.format("**** Panier a : %s euros *****\n", vente.getTotal().toString());
+            }
+            else {
+                System.out.println("***** Erreur d'ajout produit *****");
+            }
+        }
     }
     private void actionPaiementEspece() {
-
+        System.out.print("Merci de saisir la montant client : ");
+        BigDecimal montantClient = scanner.nextBigDecimal();
+        PaiementEspece paiement = new PaiementEspece(montantClient);
+        if(vente.valider(paiement) && caisse.ajouterVente(vente)) {
+            System.out.println("***** Vente validée *****");
+            System.out.format("**** valeur monnaie  : %s euros *****\n", paiement.getMonnaie().toString());
+            choixMenuVente = "0";
+        }
+        else {
+            System.out.println("***** Erreur paiement *****");
+        }
     }
     private void actionPaiementCarte() {
-
+        PaiementCB paiement = new PaiementCB();
+        if(vente.valider(paiement) && caisse.ajouterVente(vente)) {
+            System.out.println("***** Vente validée *****");
+            choixMenuVente = "0";
+        }
+        else {
+            System.out.println("***** Erreur paiement *****");
+        }
     }
     private void menu() {
         System.out.println("1---Ajouter un produit");
@@ -86,6 +116,6 @@ public class IHM {
     private void menuVente() {
         System.out.println("1---Ajouter produit");
         System.out.println("2---Paiement carte");
-        System.out.println("0---Paiement Espece");
+        System.out.println("3---Paiement Espece");
     }
 }

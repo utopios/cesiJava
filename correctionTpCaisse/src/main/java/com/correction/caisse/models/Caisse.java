@@ -19,6 +19,9 @@ public class Caisse {
         return produits.add(produit);
     }
 
+    public boolean ajouterVente(Vente vente){
+        return ventes.add(vente);
+    }
     public Produit getProduit(int reference) {
         Produit produit = null;
         for(Produit p : produits) {
