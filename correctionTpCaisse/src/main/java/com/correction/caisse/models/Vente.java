@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class Vente {
     private static int compteur = 0;
+    private Paiement paiement;
+
+    public Paiement getPaiement() {
+        return paiement;
+    }
 
     public int getNumero() {
         return numero;
@@ -25,6 +30,7 @@ public class Vente {
     }
 
     public boolean valider(Paiement paiement) {
+        this.paiement = paiement;
         if(paiement.payer(getTotal())) {
             etat = "validée";
             updateStock();
