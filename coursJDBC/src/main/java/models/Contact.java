@@ -6,6 +6,12 @@ public class Contact {
     private String nom;
     private String prenom;
 
+
+    public Contact(int id, String nom, String prenom) {
+        this(nom, prenom);
+        this.id = id;
+    }
+
     public Contact(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
