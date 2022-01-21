@@ -31,7 +31,14 @@ public class Caisse {
     public boolean ajouterVente(Vente vente){
         //return ventes.add(vente);
         try {
-            return new VenteDAO().create(vente);
+            boolean result = new VenteDAO().create(vente);
+            ProduitDAO produitDAO = new ProduitDAO();
+            if(result) {
+                for(Produit p : vente.getProduits()) {
+                    produitDAO.update(p);
+                }
+            }
+            return result;
         }catch(Exception ex) {
             return  false;
         }
