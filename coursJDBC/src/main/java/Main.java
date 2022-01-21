@@ -1,6 +1,7 @@
 import dao.ContactDAO;
 import models.Contact;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import tools.DataConnection;
 import tools.HibernateUtil;
 
@@ -35,13 +36,33 @@ public class Main {
 //        }catch (Exception ex) {
 //            System.out.println(ex);
 //        }
+        //save hibernates
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        /*session.beginTransaction();
         Contact c = new Contact();
         c.setNom("toto");
         c.setPrenom("tata");
         session.save(c);
         session.getTransaction().commit();
+        */
+
+        //Récupération d'une seul valeur
+        /*Contact contact = (Contact) session.get(Contact.class, new Integer(1));
+        contact.setPrenom("titi");
+
+        session.beginTransaction();
+        //update
+        session.update(contact);
+        //suppression
+        session.delete(contact);
+        session.getTransaction().commit();*/
+
+        //Récupération de plusieurs valeurs, HQL
+       /* Query query = session.createQuery("select c.nom, c.prenom from Contact as c");
+        List result = query.list();*/
+        Query query = session.createQuery("from Contact as c where c.id > :id");
+        query.setInteger("id", 3);
+        List result = query.list();
         HibernateUtil.closeSessionFactory();
     }
 }
