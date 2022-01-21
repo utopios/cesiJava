@@ -10,9 +10,9 @@ public abstract class BaseRepository <T> {
 
     public abstract T find(int id);
 
-    public abstract boolean delete(T element);
+    public abstract void delete(T element);
 
-    public abstract boolean update(T element);
+    public abstract void update(T element);
 
     protected BaseRepository(Session session) {
         this.session = session;
