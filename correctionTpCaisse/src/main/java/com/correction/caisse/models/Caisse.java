@@ -23,7 +23,7 @@ public class Caisse {
         //return produits.add(produit);
        try {
            return new ProduitDAO().create(produit);
-       }catch(SQLException ex) {
+       }catch(Exception ex) {
            return  false;
        }
     }
@@ -32,7 +32,7 @@ public class Caisse {
         //return ventes.add(vente);
         try {
             return new VenteDAO().create(vente);
-        }catch(SQLException ex) {
+        }catch(Exception ex) {
             return  false;
         }
     }

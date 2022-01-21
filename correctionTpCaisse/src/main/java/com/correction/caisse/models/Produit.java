@@ -14,13 +14,21 @@ public class Produit {
         this.prix = prix;
         this.stock = stock;
         this.titre = titre;
-        this.numero = ++compteur;
+//        this.numero = ++compteur;
+    }
+
+    public Produit(int id,BigDecimal prix, int stock, String titre) {
+        this(prix,stock,titre);
+        this.numero = id;
     }
 
     public int getNumero() {
         return numero;
     }
 
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public BigDecimal getPrix() {
         return prix;

@@ -11,10 +11,10 @@ public abstract class BaseDAO<T> {
     protected String request;
     protected ResultSet resultSet;
 
-    public abstract boolean create(T element) throws SQLException;
+    public abstract boolean create(T element) throws Exception;
 
-    public abstract T find(int id) throws  SQLException;
+    public abstract T find(int id) throws  Exception;
 
-    public abstract boolean update(T element) throws SQLException;
+    public abstract boolean update(T element) throws Exception;
 
 }
