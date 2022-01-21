@@ -16,6 +16,7 @@ public class VenteDAO extends BaseDAO<Vente>  {
         boolean response = false;
         request = "INSERT INTO vente (etat, total, paiement, date_et_heure) values (?,?,?,?)";
         connection = DbConnection.getConnection();
+        connection.setAutoCommit(false);
         preparedStatement = connection.prepareStatement(request, PreparedStatement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1, element.getEtat());
         preparedStatement.setBigDecimal(2, element.getTotal());
@@ -37,7 +38,9 @@ public class VenteDAO extends BaseDAO<Vente>  {
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
             }
+            connection.commit();
         }
+        connection.setAutoCommit(true);
         connection.close();
         return response;
     }
