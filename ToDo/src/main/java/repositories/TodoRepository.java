@@ -2,6 +2,9 @@ package repositories;
 
 import models.ToDo;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class TodoRepository extends BaseRepository<ToDo> {
 
@@ -35,5 +38,11 @@ public class TodoRepository extends BaseRepository<ToDo> {
         session.beginTransaction();
         session.update(element);
         session.getTransaction().commit();
+    }
+
+    @Override
+    public List<ToDo> findAll() {
+        Query query = session.createQuery("from ToDo");
+        return query.list();
     }
 }
