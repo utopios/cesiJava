@@ -42,7 +42,7 @@ public class Main {
         //save hibernates
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        session.beginTransaction();
+        //session.beginTransaction();
 
 
         /*try {
@@ -68,7 +68,7 @@ public class Main {
             session.getTransaction().rollback();
         }*/
 
-        Contact c = new Contact();
+       /* Contact c = new Contact();
         c.setNom("toto");
         c.setPrenom("tata");
 
@@ -77,17 +77,17 @@ public class Main {
         session.save(a);
         c.getAdresses().add(a);
         session.save(c);
-        session.getTransaction().commit();
+        session.getTransaction().commit();*/
         //Récupération d'une seul valeur
-        /*Contact contact = (Contact) session.get(Contact.class, new Integer(1));
+        Contact contact = (Contact) session.get(Contact.class, Integer.valueOf(20));
         contact.setPrenom("titi");
 
         session.beginTransaction();
         //update
-        session.update(contact);
+        //session.update(contact);
         //suppression
         session.delete(contact);
-        session.getTransaction().commit();*/
+        session.getTransaction().commit();
 
         //Récupération de plusieurs valeurs, HQL
        /* Query query = session.createQuery("select c.nom, c.prenom from Contact as c");

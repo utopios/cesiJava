@@ -17,7 +17,7 @@ public class Adresse {
 
     private String codePostal;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "contact_adresse",
             joinColumns = {@JoinColumn(name = "adresse_id")},
             inverseJoinColumns = {@JoinColumn(name = "contact_id")})
