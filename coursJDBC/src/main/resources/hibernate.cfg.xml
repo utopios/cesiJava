@@ -13,5 +13,6 @@
 
         <mapping class="models.Contact"></mapping>
         <mapping class="models.Email"></mapping>
+        <mapping class="models.Adresse"></mapping>
     </session-factory>
 </hibernate-configuration>

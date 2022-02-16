@@ -21,8 +21,12 @@ public class Contact {
     @OneToMany(mappedBy = "contact")
     private List<Email> emails;
 
+    @ManyToMany(mappedBy = "contacts")
+    private List<Adresse> adresses;
+
     public  Contact() {
         emails = new ArrayList<>();
+        adresses = new ArrayList<>();
     }
     public Contact(int id, String nom, String prenom) {
         this(nom, prenom);
@@ -65,5 +69,13 @@ public class Contact {
 
     public void setEmails(List<Email> emails) {
         this.emails = emails;
+    }
+
+    public List<Adresse> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<Adresse> adresses) {
+        this.adresses = adresses;
     }
 }

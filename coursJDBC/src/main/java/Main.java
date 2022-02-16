@@ -1,4 +1,5 @@
 import dao.ContactDAO;
+import models.Adresse;
 import models.Contact;
 import models.Email;
 import org.hibernate.Session;
@@ -44,7 +45,7 @@ public class Main {
         session.beginTransaction();
 
 
-        try {
+        /*try {
             Contact c = new Contact();
             c.setNom("toto");
             c.setPrenom("tata");
@@ -65,10 +66,18 @@ public class Main {
             session.getTransaction().commit();
         }catch(Exception ex) {
             session.getTransaction().rollback();
-        }
+        }*/
 
+        Contact c = new Contact();
+        c.setNom("toto");
+        c.setPrenom("tata");
 
-
+        Adresse a = new Adresse("rue", "tourcoing", "59200");
+        a.getContacts().add(c);
+        session.save(a);
+        c.getAdresses().add(a);
+        session.save(c);
+        session.getTransaction().commit();
         //Récupération d'une seul valeur
         /*Contact contact = (Contact) session.get(Contact.class, new Integer(1));
         contact.setPrenom("titi");
