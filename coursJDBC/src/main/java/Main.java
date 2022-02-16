@@ -79,24 +79,23 @@ public class Main {
         session.save(c);
         session.getTransaction().commit();*/
         //Récupération d'une seul valeur
-        Contact contact = (Contact) session.get(Contact.class, Integer.valueOf(20));
-        contact.setPrenom("titi");
+        //Contact contact = (Contact) session.get(Contact.class, Integer.valueOf(20));
+        //contact.setPrenom("titi");
 
         session.beginTransaction();
         //update
         //session.update(contact);
         //suppression
-        session.delete(contact);
-        session.getTransaction().commit();
+        //session.delete(contact);
+        //session.getTransaction().commit();
 
         //Récupération de plusieurs valeurs, HQL
-       /* Query query = session.createQuery("select c.nom, c.prenom from Contact as c");
-        List result = query.list();*/
+        Query query = session.createQuery("from Email e join e.contact");
+        List result = query.list();
         /*Query query = session.createQuery("from Contact as c where c.id > :id");
         query.setInteger("id", 3);
         List result = query.list();
         HibernateUtil.closeSessionFactory();*/
-
 
     }
 }

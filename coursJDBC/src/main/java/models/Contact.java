@@ -18,7 +18,7 @@ public class Contact {
     private String nom;
     private String prenom;
 
-    @OneToMany(mappedBy = "contact")
+    @OneToMany(mappedBy = "contact", fetch = FetchType.LAZY)
     private List<Email> emails;
 
     @ManyToMany(mappedBy = "contacts")
