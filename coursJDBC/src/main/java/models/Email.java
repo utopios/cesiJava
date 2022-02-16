@@ -1,10 +1,7 @@
 package models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Email {
@@ -13,6 +10,11 @@ public class Email {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String mail;
+
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id", nullable = false)
+    private Contact contact;
 
     public Email() {
 
@@ -36,5 +38,13 @@ public class Email {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

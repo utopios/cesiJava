@@ -18,7 +18,7 @@ public class Contact {
     private String nom;
     private String prenom;
 
-    @OneToMany
+    @OneToMany(mappedBy = "contact")
     private List<Email> emails;
 
     public  Contact() {

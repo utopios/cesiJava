@@ -42,12 +42,31 @@ public class Main {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
-        Contact c = new Contact();
-        c.setNom("toto");
-        c.setPrenom("tata");
-        c.getEmails().add(new Email("toto@tata.fr"));
-        session.save(c);
-        session.getTransaction().commit();
+
+
+        try {
+            Contact c = new Contact();
+            c.setNom("toto");
+            c.setPrenom("tata");
+
+
+            Email e1 = new Email("toto@tata.fr");
+            c.getEmails().add(e1);
+            e1.setContact(c);
+
+
+            Email e2 = new Email("tata@toto.fr");
+            c.getEmails().add(e2);
+            e2.setContact(c);
+
+            session.save(c);
+            session.save(e1);
+            session.save(e2);
+            session.getTransaction().commit();
+        }catch(Exception ex) {
+            session.getTransaction().rollback();
+        }
+
 
 
         //Récupération d'une seul valeur
