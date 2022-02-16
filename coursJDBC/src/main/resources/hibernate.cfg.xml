@@ -12,5 +12,6 @@
         <property name="show_sql">true</property>
 
         <mapping class="models.Contact"></mapping>
+        <mapping class="models.Email"></mapping>
     </session-factory>
 </hibernate-configuration>

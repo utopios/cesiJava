@@ -1,6 +1,10 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "contact")
@@ -14,8 +18,11 @@ public class Contact {
     private String nom;
     private String prenom;
 
-    public  Contact() {
+    @OneToMany
+    private List<Email> emails;
 
+    public  Contact() {
+        emails = new ArrayList<>();
     }
     public Contact(int id, String nom, String prenom) {
         this(nom, prenom);
@@ -23,6 +30,7 @@ public class Contact {
     }
 
     public Contact(String nom, String prenom) {
+        this();
         this.nom = nom;
         this.prenom = prenom;
     }
@@ -49,5 +57,13 @@ public class Contact {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public List<Email> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<Email> emails) {
+        this.emails = emails;
     }
 }

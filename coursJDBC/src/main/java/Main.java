@@ -1,16 +1,18 @@
 import dao.ContactDAO;
 import models.Contact;
+import models.Email;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import tools.DataConnection;
 import tools.HibernateUtil;
 
+import javax.persistence.EntityManagerFactory;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public  static void main(String[] args) {
+    public  static void main(String[] args) throws Exception {
        /* try {
             Connection connection = new DataConnection().getConnection();
             if(connection != null) {
@@ -38,13 +40,15 @@ public class Main {
 //        }
         //save hibernates
         Session session = HibernateUtil.getSessionFactory().openSession();
-        /*session.beginTransaction();
+
+        session.beginTransaction();
         Contact c = new Contact();
         c.setNom("toto");
         c.setPrenom("tata");
+        c.getEmails().add(new Email("toto@tata.fr"));
         session.save(c);
         session.getTransaction().commit();
-        */
+
 
         //Récupération d'une seul valeur
         /*Contact contact = (Contact) session.get(Contact.class, new Integer(1));
@@ -60,9 +64,11 @@ public class Main {
         //Récupération de plusieurs valeurs, HQL
        /* Query query = session.createQuery("select c.nom, c.prenom from Contact as c");
         List result = query.list();*/
-        Query query = session.createQuery("from Contact as c where c.id > :id");
+        /*Query query = session.createQuery("from Contact as c where c.id > :id");
         query.setInteger("id", 3);
         List result = query.list();
-        HibernateUtil.closeSessionFactory();
+        HibernateUtil.closeSessionFactory();*/
+
+
     }
 }
