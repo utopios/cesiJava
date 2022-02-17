@@ -1,6 +1,10 @@
 package cesi.di.formationspring.controller;
 
 import cesi.di.formationspring.model.Todo;
+import cesi.di.formationspring.repositories.TodoRepository;
+import cesi.di.formationspring.tools.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +18,14 @@ public class ToDoController {
 
     @RequestMapping("/todos")
     public String getTodos(Model model) {
-        List<Todo> todos = new ArrayList<>();
-        todos.add(new Todo("todo 1"));
-        todos.add(new Todo("todo 2"));
-        todos.add(new Todo("todo 3"));
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        TodoRepository todoRepository = new TodoRepository(session);
+        List<Todo> todos = todoRepository.findAll();
         model.addAttribute("todos", todos);
         return  "todos/index";
     }
 
-    @RequestMapping("/todos/detail")
+    /*@RequestMapping("/todos/detail")
     public String getDetail(@RequestParam(name = "content") String content, Model model) {
         Todo todo = new Todo(content);
         model.addAttribute("todo", todo);
@@ -39,11 +42,11 @@ public class ToDoController {
     public String submitForm(@ModelAttribute Todo todo, Model model) {
         model.addAttribute("todo", todo);
         return "todos/detail";
-    }*/
+    }
 
     @PostMapping("/todos/submitForm")
     public RedirectView submitForm(@ModelAttribute Todo todo, Model model) {
         model.addAttribute("todo", todo);
         return new RedirectView("/todos");
-    }
+    }*/
 }

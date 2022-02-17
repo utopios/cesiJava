@@ -9,8 +9,9 @@
 <div>
     <h1>Liste des todos</h1>
     <div th:each="todo : ${todos}">
-        <span th:text="${todo.getContent()}"></span>
-        <a th:href="@{/todos/detail/(content=${todo.getContent()})}">Detail</a>
+        <span th:text="${todo.getTitle()}"></span>
+        <span th:text="${todo.getDateTime()}"></span>
+        <a th:href="@{/todos/detail/(id=${todo.getId()})}">Detail</a>
     </div>
 </div>
 </body>
