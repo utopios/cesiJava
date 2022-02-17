@@ -1,9 +1,11 @@
 import models.Customer;
 import models.Hotel;
+import models.Reservation;
 import models.Room;
 import org.hibernate.Session;
 import repositories.CustomerRepository;
 import repositories.HotelRepository;
+import repositories.ReservationRepository;
 import repositories.RoomRepository;
 import tools.HibernateUtil;
 import tools.RoomStatus;
@@ -36,9 +38,9 @@ public class Main {
         hotelRepository.create(hotel);*/
 
         //Récupérer un hotel
-        //Hotel hotel = new HotelRepository(session).find(6);
+        Hotel hotel = new HotelRepository(session).find(6);
         //Créer un client
-        //CustomerRepository customerRepository = new CustomerRepository(session);
+        CustomerRepository customerRepository = new CustomerRepository(session);
         /*Customer customer = new Customer("toto","tata", "0606060606");
         customer.getHotels().add(hotel);
         customerRepository.create(customer);*/
@@ -50,6 +52,16 @@ public class Main {
         /*Room room = roomRepository.find(1);
         room.setStatus(RoomStatus.BUSY);
         roomRepository.update(room);*/
-        List freeRooms = roomRepository.findByHotelIdAndStatus(6, RoomStatus.BUSY);
+        /*List<Room> freeRooms = roomRepository.findByHotelIdAndStatus(6, RoomStatus.FREE);
+        Customer customer = customerRepository.find(2);
+        Reservation reservation = new Reservation();
+        reservation.addRoom(freeRooms.get(1));
+        reservation.addRoom(freeRooms.get(2));
+        reservation.setCustomer(customer);
+        reservation.setHotel(hotel);*/
+
+        ReservationRepository reservationRepository = new ReservationRepository(session);
+        //reservationRepository.create(reservation);
+        Reservation reservation = reservationRepository.find(1);
     }
 }

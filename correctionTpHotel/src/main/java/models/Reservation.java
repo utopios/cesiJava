@@ -1,6 +1,7 @@
 package models;
 
 import tools.ReservationStatus;
+import tools.RoomStatus;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Reservation {
 
     public Reservation() {
         rooms = new ArrayList<>();
+        status = ReservationStatus.CONFIRMED;
     }
 
     public Reservation(ReservationStatus status, Customer customer) {
@@ -72,5 +74,18 @@ public class Reservation {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public void addRoom(Room room) {
+        rooms.add(room);
+        room.setStatus(RoomStatus.BUSY);
     }
 }
