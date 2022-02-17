@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h1>Ajouter un todo</h1>
+  <form method="post" th:action="@{/todos/submitForm}" th:object="${todo}">
+    <div>
+      <label>
+        Content :
+      </label>
+      <textarea th:field="*{content}"></textarea>
+    </div>
+    <div>
+      <button type="submit">Valider</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

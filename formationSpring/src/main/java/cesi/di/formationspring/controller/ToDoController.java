@@ -3,8 +3,8 @@ package cesi.di.formationspring.controller;
 import cesi.di.formationspring.model.Todo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +27,23 @@ public class ToDoController {
         Todo todo = new Todo(content);
         model.addAttribute("todo", todo);
         return "todos/detail";
+    }
+
+    @GetMapping("/todos/form")
+    public String from(Model model) {
+        model.addAttribute("todo", new Todo());
+        return "todos/form";
+    }
+
+    /*@PostMapping("/todos/submitForm")
+    public String submitForm(@ModelAttribute Todo todo, Model model) {
+        model.addAttribute("todo", todo);
+        return "todos/detail";
+    }*/
+
+    @PostMapping("/todos/submitForm")
+    public RedirectView submitForm(@ModelAttribute Todo todo, Model model) {
+        model.addAttribute("todo", todo);
+        return new RedirectView("/todos");
     }
 }

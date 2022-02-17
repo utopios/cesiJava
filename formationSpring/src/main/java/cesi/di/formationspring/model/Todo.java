@@ -8,6 +8,8 @@ public class Todo {
         this.content = content;
     }
 
+    public Todo() {
+    }
 
     public String getContent() {
         return content;
