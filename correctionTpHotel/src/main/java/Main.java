@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 
 public class Main {
     public static void main(String args[]) {
+        //Session hiberanate
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         //Création d'un fake hotel
-        Hotel hotel = new Hotel();
+        /*Hotel hotel = new Hotel();
         hotel.setName("Hotel F1");
         for(int i=1; i <= 10; i++) {
             Room room;
@@ -23,10 +26,12 @@ public class Main {
             hotel.getRooms().add(room);
         }
 
-        //Session hiberanate
-        Session session = HibernateUtil.getSessionFactory().openSession();
+
         //Création de l'hotel repository
         HotelRepository hotelRepository = new HotelRepository(session);
-        hotelRepository.create(hotel);
+        hotelRepository.create(hotel);*/
+
+        //Récupérer un hotel
+        Hotel hotel = new HotelRepository(session).find(6);
     }
 }

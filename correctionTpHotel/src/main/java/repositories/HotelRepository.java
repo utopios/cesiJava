@@ -33,21 +33,22 @@ public class HotelRepository extends BaseRepository<Hotel>{
 
     @Override
     public Hotel find(int id) {
-        return null;
+        //Utiliser hibernate pour aller chercher notre hotel
+        return _session.get(Hotel.class, Integer.valueOf(id));
     }
 
     @Override
-    public void delete(Hotel element) {
-
+    public void delete(Hotel element) throws Exception {
+        throw new Exception("Not used");
     }
 
     @Override
-    public void update(Hotel element) {
-
+    public void update(Hotel element) throws Exception {
+        throw new Exception("Not used");
     }
 
     @Override
-    public List<Hotel> findAll() {
-        return null;
+    public List<Hotel> findAll() throws Exception {
+        throw new Exception("Not used");
     }
 }

@@ -13,9 +13,9 @@ public abstract class BaseRepository<T> {
 
     public abstract T find(int id);
 
-    public abstract void delete(T element);
+    public abstract void delete(T element) throws Exception;
 
-    public abstract void update(T element);
+    public abstract void update(T element) throws Exception;
 
-    public abstract List<T> findAll();
+    public abstract List<T> findAll() throws Exception;
 }
