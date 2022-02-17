@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello from spring application</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div>
+    <h1>Detail </h1>
+    <div>
+        <span th:text="${todo.getContent()}"></span>
+        <a th:href="@{/todos}">retour</a>
+    </div>
+</div>
+</body>
+</html>
