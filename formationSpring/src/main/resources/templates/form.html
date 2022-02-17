@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/submitForm}" method="post" th:object="${person}">
+    <div>
+        <label>first name</label>
+        <input type="text" th:field="*{firstName}" />
+    </div>
+    <div>
+        <label>first name</label>
+        <input type="text" th:field="*{lastName}" />
+    </div>
+    <div>
+        <button type="submit">Valider</button>
+    </div>
+</form>
+</body>
+</html>
