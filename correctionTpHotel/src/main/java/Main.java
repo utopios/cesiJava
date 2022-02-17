@@ -1,11 +1,14 @@
+import models.Customer;
 import models.Hotel;
 import models.Room;
 import org.hibernate.Session;
+import repositories.CustomerRepository;
 import repositories.HotelRepository;
 import tools.HibernateUtil;
 import tools.RoomStatus;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Main {
     public static void main(String args[]) {
@@ -33,5 +36,12 @@ public class Main {
 
         //Récupérer un hotel
         Hotel hotel = new HotelRepository(session).find(6);
+        //Créer un client
+        CustomerRepository customerRepository = new CustomerRepository(session);
+        /*Customer customer = new Customer("toto","tata", "0606060606");
+        customer.getHotels().add(hotel);
+        customerRepository.create(customer);*/
+        //Récupérer les client d'un hotel
+        List<Customer> customers = customerRepository.findAllByHotelId(6);
     }
 }
