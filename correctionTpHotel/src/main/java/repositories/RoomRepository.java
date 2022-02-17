@@ -1,7 +1,9 @@
 package repositories;
 
+import customException.NotUsedException;
 import org.hibernate.Session;
 import models.Room;
+import org.hibernate.query.Query;
 import tools.RoomStatus;
 
 import java.util.List;
@@ -21,29 +23,38 @@ public class RoomRepository extends BaseRepository<Room>{
     @Override
     public Room find(int id) {
         //A ajouter
-        return null;
+        return _session.get(Room.class, Integer.valueOf(id));
     }
 
     @Override
-    public void delete(Room element) {
+    public void delete(Room element) throws NotUsedException {
         //Non
+        throw new NotUsedException();
     }
 
     @Override
     public void update(Room element) {
         //Pour mettre à jour le statut de la chambre
+        _session.beginTransaction();
+        _session.update(element);
+        _session.getTransaction().commit();
     }
 
     @Override
-    public List<Room> findAll() {
-        //Non utilisé
-        return null;
+    public List<Room> findAll() throws NotUsedException {
+        throw new NotUsedException();
     }
 
     public List<Room> findByHotelId(int hotelId) {
-        return null;
+        Query query = _session.createQuery("from Room r where r.hotel.id = :id");
+        query.setParameter("id", hotelId);
+        return query.list();
     }
     public List<Room> findByHotelIdAndStatus(int hotelId, RoomStatus status) {
-        return null;
+        Query query = _session.createQuery("from Room r where r.hotel.id = :id and r.status = :status");
+        query.setParameter("id", hotelId);
+        query.setParameter("status", status);
+        return query.list();
+
     }
 }

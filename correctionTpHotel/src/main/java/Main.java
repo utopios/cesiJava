@@ -4,6 +4,7 @@ import models.Room;
 import org.hibernate.Session;
 import repositories.CustomerRepository;
 import repositories.HotelRepository;
+import repositories.RoomRepository;
 import tools.HibernateUtil;
 import tools.RoomStatus;
 
@@ -35,13 +36,20 @@ public class Main {
         hotelRepository.create(hotel);*/
 
         //Récupérer un hotel
-        Hotel hotel = new HotelRepository(session).find(6);
+        //Hotel hotel = new HotelRepository(session).find(6);
         //Créer un client
-        CustomerRepository customerRepository = new CustomerRepository(session);
+        //CustomerRepository customerRepository = new CustomerRepository(session);
         /*Customer customer = new Customer("toto","tata", "0606060606");
         customer.getHotels().add(hotel);
         customerRepository.create(customer);*/
         //Récupérer les client d'un hotel
-        List<Customer> customers = customerRepository.findAllByHotelId(6);
+        //List<Customer> customers = customerRepository.findAllByHotelId(6);
+
+        //Test du roomRepository
+        RoomRepository roomRepository = new RoomRepository(session);
+        /*Room room = roomRepository.find(1);
+        room.setStatus(RoomStatus.BUSY);
+        roomRepository.update(room);*/
+        List freeRooms = roomRepository.findByHotelIdAndStatus(6, RoomStatus.BUSY);
     }
 }
