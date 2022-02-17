@@ -35,9 +35,9 @@ public class RoomRepository extends BaseRepository<Room>{
     @Override
     public void update(Room element) {
         //Pour mettre à jour le statut de la chambre
-        _session.beginTransaction();
+        //_session.beginTransaction();
         _session.update(element);
-        _session.getTransaction().commit();
+        //_session.getTransaction().commit();
     }
 
     @Override

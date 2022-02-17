@@ -3,6 +3,7 @@ package models;
 import tools.ReservationStatus;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,6 +28,7 @@ public class Reservation {
     private Hotel hotel;
 
     public Reservation() {
+        rooms = new ArrayList<>();
     }
 
     public Reservation(ReservationStatus status, Customer customer) {
@@ -62,5 +64,13 @@ public class Reservation {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }
