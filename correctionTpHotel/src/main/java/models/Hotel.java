@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,11 @@ public class Hotel {
     @ManyToMany(mappedBy = "hotels")
     private List<Customer> customers;
 
+    public Hotel() {
+        rooms = new ArrayList<>();
+        reservations = new ArrayList<>();
+        customers = new ArrayList<>();
+    }
     public int getId() {
         return id;
     }

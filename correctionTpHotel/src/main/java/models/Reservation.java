@@ -13,6 +13,7 @@ public class Reservation {
     private ReservationStatus status;
 
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToMany
@@ -22,6 +23,7 @@ public class Reservation {
     private List<Room> rooms;
 
     @ManyToOne
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     public Reservation() {

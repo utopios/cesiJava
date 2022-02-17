@@ -1,37 +1,38 @@
 package repositories;
 
 import org.hibernate.Session;
-
+import models.Room;
 import java.util.List;
 
-public class RoomRepository extends BaseRepository<RoomRepository>{
+public class RoomRepository extends BaseRepository<Room>{
 
     public RoomRepository(Session session) {
         super(session);
     }
 
     @Override
-    public boolean create(RoomRepository element) {
-        return false;
+    public boolean create(Room element) {
+        _session.save(element);
+        return element.getId() > 0;
     }
 
     @Override
-    public RoomRepository find(int id) {
+    public Room find(int id) {
         return null;
     }
 
     @Override
-    public void delete(RoomRepository element) {
+    public void delete(Room element) {
 
     }
 
     @Override
-    public void update(RoomRepository element) {
+    public void update(Room element) {
 
     }
 
     @Override
-    public List<RoomRepository> findAll() {
+    public List<Room> findAll() {
         return null;
     }
 }
