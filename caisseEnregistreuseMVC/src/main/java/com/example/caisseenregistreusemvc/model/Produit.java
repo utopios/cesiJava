@@ -1,9 +1,6 @@
 package com.example.caisseenregistreusemvc.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 
@@ -13,6 +10,7 @@ public class Produit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int numero;
     private BigDecimal prix;
     private int stock;

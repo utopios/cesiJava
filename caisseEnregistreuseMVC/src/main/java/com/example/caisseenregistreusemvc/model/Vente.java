@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Vente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int numero;
     private String etat;
 
