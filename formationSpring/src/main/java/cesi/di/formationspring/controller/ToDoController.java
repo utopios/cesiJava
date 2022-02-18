@@ -5,6 +5,7 @@ import cesi.di.formationspring.repositories.TodoRepository;
 import cesi.di.formationspring.tools.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,18 @@ import java.util.List;
 @Controller
 public class ToDoController {
 
+    @Autowired
+    private TodoRepository _todoRepository;
+
+    /*public ToDoController(TodoRepository todoRepository) {
+        _todoRepository = todoRepository;
+    }*/
+
     @RequestMapping("/todos")
     public String getTodos(Model model) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        TodoRepository todoRepository = new TodoRepository(session);
-        List<Todo> todos = todoRepository.findAll();
+        /*Session session = HibernateUtil.getSessionFactory().openSession();
+        TodoRepository todoRepository = new TodoRepository(session);*/
+        List<Todo> todos = _todoRepository.findAll();
         model.addAttribute("todos", todos);
         return  "todos/index";
     }

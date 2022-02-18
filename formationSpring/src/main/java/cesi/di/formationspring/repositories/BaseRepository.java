@@ -1,6 +1,7 @@
 package cesi.di.formationspring.repositories;
 
 
+import cesi.di.formationspring.tools.ServiceHibernate;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public abstract class BaseRepository <T> {
 
     public abstract List<T> findAll();
 
-    protected BaseRepository(Session session) {
-        this.session = session;
+    protected BaseRepository(ServiceHibernate serviceHibernate) {
+        this.session = serviceHibernate.getSession();
     }
 }

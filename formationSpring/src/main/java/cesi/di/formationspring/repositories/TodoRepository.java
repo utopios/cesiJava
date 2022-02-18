@@ -1,15 +1,19 @@
 package cesi.di.formationspring.repositories;
 
 import cesi.di.formationspring.model.Todo;
+import cesi.di.formationspring.tools.ServiceHibernate;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TodoRepository extends BaseRepository<Todo> {
 
-    public TodoRepository(Session session) {
-        super(session);
+    public TodoRepository(ServiceHibernate serviceHibernate) {
+        super(serviceHibernate);
     }
     @Override
     public boolean create(Todo element) {
