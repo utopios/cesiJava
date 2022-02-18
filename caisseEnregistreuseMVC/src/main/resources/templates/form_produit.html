@@ -5,6 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-
+<div>
+    <h1>Ajout de produit</h1>
+    <form th:object="${produit}" method="post" th:action="@{/produit}">
+        <div>
+            <label>Titre : </label><input type="text" th:field="*{titre}">
+        </div>
+        <div>
+            <label>Prix : </label><input type="text" th:field="*{prix}">
+        </div>
+        <div>
+            <label>Stock : </label><input type="text" th:field="*{stock}">
+        </div>
+        <div>
+            <button type="submit">Valider</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

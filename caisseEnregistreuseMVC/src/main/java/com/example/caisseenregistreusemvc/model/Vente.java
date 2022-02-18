@@ -3,7 +3,9 @@ package com.example.caisseenregistreusemvc.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Vente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +17,7 @@ public class Vente {
     @JoinTable(name = "vente_produit",
             joinColumns = @JoinColumn(name = "vente_id"),
             inverseJoinColumns = @JoinColumn(name = "produit_id"))
-    private ArrayList<Produit> produits;
+    private List<Produit> produits;
 
     @OneToOne
     @JoinColumn(name = "paiement_id")
@@ -47,7 +49,7 @@ public class Vente {
     }
 
 
-    public ArrayList<Produit> getProduits() {
+    public List<Produit> getProduits() {
         return produits;
     }
 

@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-
+    <div th:each="produit : ${produits}">
+        <span th:text="${produit.getTitre()}"></span>
+        <span th:text="${produit.getPrix()}"></span>
+        <a th:href="@{/vente/ajouter/produit/(id=${produit.getNumero()})}">Ajouter à la vente</a>
+    </div>
 </body>
 </html>

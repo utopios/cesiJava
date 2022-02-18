@@ -14,18 +14,18 @@ import java.util.List;
 public class ProduitController {
 
     @Autowired
-    ProduitRepository produitRepository;
+    ProduitRepository _produitRepository;
 
     @RequestMapping("/")
     public String getProduits(Model model) {
-        List<Produit> produits = (List<Produit>) produitRepository.findAll();
+        List<Produit> produits = (List<Produit>) _produitRepository.findAll();
         model.addAttribute("produits", produits);
         return "produits";
     }
 
     @RequestMapping("/search")
     public  String rechercheProduits(@RequestParam("search") String search, Model model) {
-        List<Produit> produits = produitRepository.findByTitre(search);
+        List<Produit> produits = _produitRepository.findByTitre(search);
         model.addAttribute("produits", produits);
         return "produits";
     }
@@ -33,12 +33,15 @@ public class ProduitController {
     @GetMapping("/produit/form")
     public String formProduit(Model model) {
         //Préparer le model pour le formulaire d'ajout
+        Produit produit = new Produit();
+        model.addAttribute("produit", produit);
         return "form_produit";
     }
 
     @PostMapping("/produit")
     public RedirectView submitProduit(@ModelAttribute Produit produit, Model model) {
         //Après l'enregistrement du produit
+        _produitRepository.save(produit);
         return new RedirectView("/");
     }
 

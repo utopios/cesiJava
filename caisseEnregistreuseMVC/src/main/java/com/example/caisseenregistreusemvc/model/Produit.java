@@ -2,6 +2,7 @@ package com.example.caisseenregistreusemvc.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -65,4 +66,8 @@ public class Produit {
     public void setTitre(String titre) {
         this.titre = titre;
     }
+
+    @ManyToMany(mappedBy = "produits")
+    private List<Vente> ventes;
+
 }
