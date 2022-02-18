@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>Vente en cours</h1>
+<div th:each="produit : ${vente.getProduits()}">
+    <span th:text="${produit.getTitre()}"></span>
+    <span th:text="${produit.getPrix()}"></span>
+</div>
+<div>
+    Total : <span th:text="${vente.getTotal()}"></span>
+</div>
 </body>
 </html>

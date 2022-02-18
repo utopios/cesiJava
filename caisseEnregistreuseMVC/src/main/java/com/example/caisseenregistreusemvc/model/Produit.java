@@ -1,5 +1,7 @@
 package com.example.caisseenregistreusemvc.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;

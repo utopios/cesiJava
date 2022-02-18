@@ -4,6 +4,7 @@ import com.example.caisseenregistreusemvc.model.Produit;
 import com.example.caisseenregistreusemvc.model.Vente;
 import com.example.caisseenregistreusemvc.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Controller
 public class VenteController {
 
     @Autowired
@@ -28,7 +30,7 @@ public class VenteController {
     }
 
     @GetMapping("/vente/ajouter/produit")
-    public RedirectView post(@RequestParam("id") int id, HttpServletRequest request) {
+    public RedirectView addProduit(@RequestParam("id") int id, HttpServletRequest request) {
         //Récupérer le produit et de l'ajouter dans la vente
         Produit produit = _produitRepository.findById(id).get();
         //On accède à la session à partir de servlet Request.
@@ -37,6 +39,7 @@ public class VenteController {
             vente = new Vente();
         }
         vente.ajouterProduit(produit);
+        request.getSession().setAttribute("VENTE", vente);
         return new RedirectView("/vente");
     }
 
